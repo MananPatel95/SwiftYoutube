@@ -9,6 +9,7 @@
 import UIKit
 
 class BaseCell: UICollectionViewCell {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -25,6 +26,12 @@ class BaseCell: UICollectionViewCell {
 }
 
 class VideoCell: BaseCell {
+    
+    var video: Video? {
+        didSet{
+            updateLabels()
+        }
+    }
     
     let thumbNailView: UIImageView = {
         let view = UIImageView()
@@ -51,6 +58,8 @@ class VideoCell: BaseCell {
         label.text = "Taylor Swift - Blank Space"
         label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         label.translatesAutoresizingMaskIntoConstraints = false
+        //label.numberOfLines = 2
+        //label.lineBreakMode = .byWordWrapping
         return label
     }()
     
@@ -72,12 +81,14 @@ class VideoCell: BaseCell {
         return view
     }()
     
+    var titleHeight: CGSize = .init(width: 0, height: 44)
+    
     override func setupViews() {
         addSubview(thumbNailView)
         thumbNailView.anchor(top: self.safeTopAnchor, leading: self.safeLeadingAnchor, bottom: nil, trailing: self.safeTrailingAnchor, padding: .init(top: 10, left: 5, bottom: 10, right: 5))
         
         addSubview(userProfileView)
-        userProfileView.anchor(top: thumbNailView.safeBottomAnchor, leading: self.safeLeadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 5, left: 5, bottom: 5, right: 5), size: .init(width: 44, height: 44))
+        userProfileView.anchor(top: thumbNailView.safeBottomAnchor, leading: self.safeLeadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 10, left: 5, bottom: 5, right: 5), size: .init(width: 44, height: 44))
         
         addSubview(titleLabel)
         titleLabel.anchor(top: thumbNailView.safeBottomAnchor, leading: userProfileView.safeTrailingAnchor, bottom: nil, trailing: self.safeTrailingAnchor, padding: .init(top: 10, left: 10, bottom: 5, right: 5), size: .init(width: 0, height: 22))
@@ -88,6 +99,25 @@ class VideoCell: BaseCell {
         addSubview(lineView)
         lineView.anchor(top: subtitleTextView.safeBottomAnchor, leading: self.safeLeadingAnchor, bottom: self.safeBottomAnchor, trailing: self.safeTrailingAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 1))
     }
+    
+    func updateLabels() {
+        if let videoStr = video?.thumbnailImageName {
+           thumbNailView.image = UIImage(named: videoStr)
+        }
+        
+        titleLabel.text = video?.title
+        
+        if let profileStr = video?.channel?.profileImageName {
+            userProfileView.image = UIImage(named: profileStr)
+        }
+        
+        if let views = video?.viewCount, let name = video?.channel?.name {
+            let number = NumberFormatter.localizedString(from: views, number: .decimal)
+            subtitleTextView.text = "\(name) • \( number )  • 2 years ago"
+        }
+    }
+    
+    
     
 }
 

@@ -16,6 +16,8 @@
 		0B07410A203A0874003AFAD6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B074109203A0874003AFAD6 /* Extensions.swift */; };
 		0B50BCCF203A59E70087BB87 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B50BCCE203A59E70087BB87 /* VideoCell.swift */; };
 		0B50BCD2203A5A5E0087BB87 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B50BCD1203A5A5E0087BB87 /* MenuBar.swift */; };
+		0BD237F02041DF9D009855CB /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD237EF2041DF9D009855CB /* Video.swift */; };
+		0BD237F22041E1CC009855CB /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD237F12041E1CC009855CB /* Channel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		0B074109203A0874003AFAD6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0B50BCCE203A59E70087BB87 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		0B50BCD1203A5A5E0087BB87 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		0BD237EF2041DF9D009855CB /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		0BD237F12041E1CC009855CB /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 		0B50BCCB203A59B60087BB87 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0BD237EF2041DF9D009855CB /* Video.swift */,
+				0BD237F12041E1CC009855CB /* Channel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,10 +187,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B50BCCF203A59E70087BB87 /* VideoCell.swift in Sources */,
+				0BD237F22041E1CC009855CB /* Channel.swift in Sources */,
 				0B0740FD203A04E4003AFAD6 /* SwiftYoutube.xcdatamodeld in Sources */,
 				0B50BCD2203A5A5E0087BB87 /* MenuBar.swift in Sources */,
 				0B0740F7203A04E4003AFAD6 /* HomeController.swift in Sources */,
 				0B0740F5203A04E4003AFAD6 /* AppDelegate.swift in Sources */,
+				0BD237F02041DF9D009855CB /* Video.swift in Sources */,
 				0B07410A203A0874003AFAD6 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

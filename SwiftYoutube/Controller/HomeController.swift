@@ -15,6 +15,27 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return mb
     }()
     
+    var videos: [Video] = {
+        
+        var kanyeChannel = Channel()
+        kanyeChannel.name = "Kanye's Corner"
+        kanyeChannel.profileImageName = "kanye_profile"
+        
+        var blankSpaceVideo = Video()
+        blankSpaceVideo.title = "Taylor Swift - Blank Space"
+        blankSpaceVideo.thumbnailImageName = "taylor_swift_blank_space"
+        blankSpaceVideo.channel = kanyeChannel
+        blankSpaceVideo.viewCount = 2453513569
+        
+        var badBloodVideo = Video()
+        badBloodVideo.title = "Taylor Swift - Bad Blood featuring Kendrick Lamar"
+        badBloodVideo.thumbnailImageName = "taylor_swift_bad_blood"
+        badBloodVideo.channel = kanyeChannel
+        badBloodVideo.viewCount = 1243562368
+        
+        return [blankSpaceVideo, badBloodVideo]
+    }()
+    
     
     override func viewDidLoad() {
         
@@ -38,6 +59,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.scrollIndicatorInsets = .init(top: 50, left: 0, bottom: 0, right: 0)
         
         setupMenuBar()
+        
+        setupNavBarButtons()
     }
     
     private func setupMenuBar() {
@@ -45,12 +68,29 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         menuBar.anchor(top: view.safeTopAnchor, leading: view.safeLeadingAnchor, bottom: nil, trailing: view.safeTrailingAnchor, padding: .init(top: 0, left: 0, bottom: 5, right: 0), size: .init(width: 0, height: 50))
     }
     
+    func setupNavBarButtons() {
+        let moreinfoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "nav_more_icon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMoreInfo))
+        let searchButton = UIBarButtonItem(image: #imageLiteral(resourceName: "search_icon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleSearch))
+        navigationItem.rightBarButtonItems = [moreinfoButton, searchButton]
+    }
+    
+    @objc func handleSearch() {
+        print("123")
+    }
+    
+    @objc func handleMoreInfo() {
+        
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return videos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as! VideoCell
+        
+        cell.video = videos[indexPath.row]
+        
         return cell
     }
     
